@@ -38,7 +38,7 @@ public class LibroController {
 	@PostMapping()
 	public String guardarLibro(@RequestBody LibroModel l) {
 		libroService.guardarLibro(l);
-		return "Usuario Creado";
+		return "Libro Creado";
 	}
 	@DeleteMapping(path="/{id}")
 	public String borrarLibro(@PathVariable("id") Long id) {
@@ -50,5 +50,17 @@ public class LibroController {
 		}
 	}
 	
+	@DeleteMapping (path="/{id}")
+	public String borrarLibroDefinitivo(@PathVariable("id") Long id) {
+		boolean response = libroService.borrarLibroDefinitivo(id);
+		if(response) {
+			return "Libro Borrado";
+		}else {
+			return "Error al borrar libro";
+		
+	
 
 }
+	}
+}
+
