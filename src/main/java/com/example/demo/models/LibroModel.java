@@ -12,6 +12,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "libro")
 public class LibroModel {
@@ -30,6 +32,13 @@ public class LibroModel {
 	private String formato;
 	private int stock;
 	private Boolean activo;
+	
+	@ManyToOne()
+	@JoinColumn(name = "autor_id")
+	@JsonBackReference
+	private AutorModel autor;
+	
+	
 
 	public Long getId() {
 		return id;
