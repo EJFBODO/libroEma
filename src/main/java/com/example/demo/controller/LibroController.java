@@ -53,7 +53,7 @@ public class LibroController {
 	@DeleteMapping (path="/delete/{id}")
 	public String borrarLibroDefinitivo(@PathVariable("id") Long id) {
 		boolean response = libroService.borrarLibroDefinitivo(id);
-		if(response) {
+		if (response) {
 			return "Libro Borrado";
 		}else {
 			return "Error al borrar libro";

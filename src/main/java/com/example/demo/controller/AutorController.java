@@ -18,55 +18,49 @@ import com.example.demo.services.AutorService;
 import com.example.demo.services.LibroService;
 
 @RestController
-@RequestMapping ("/autor")
+@RequestMapping("/autor")
 
 public class AutorController {
 	@Autowired
 	AutorService autorService;
-	
+
 	@GetMapping()
-	public ArrayList<AutorModel> obtenerAutores(){
+	public ArrayList<AutorModel> obtenerAutores() {
 		ArrayList<AutorModel> listado = autorService.obtenerAutores();
 		listado.removeIf(u -> u.isActivo() == false);
 		return listado;
 	}
-	
-	@GetMapping(path="/{id}")
+
+	@GetMapping(path = "/{id}")
 	public Optional<AutorModel> obtenerAutor(@PathVariable("id") Long id) {
 		return autorService.obtenerAutor(id);
 	}
-	
+
 	@PostMapping()
 	public String guardarAutor(@RequestBody AutorModel a) {
 		autorService.guardarAutor(a);
 		return "Autor Creado";
 	}
-	@DeleteMapping(path="/{id}")
+
+	@DeleteMapping(path = "/{id}")
 	public String borrarAutor(@PathVariable("id") Long id) {
 		boolean response = autorService.borrarAutor(id);
-		if(response) {
+		if (response) {
 			return "Autor Borrado";
-		}else {
+		} else {
 			return "Error al borrar autor";
 		}
 	}
-	
-	@DeleteMapping (path="/delete/{id}")
+
+	@DeleteMapping(path = "/delete/{id}")
 	public String borrarAutorDefinitivo(@PathVariable("id") Long id) {
 		boolean response = autorService.borrarAutorDefinitivo(id);
 		if (response) {
 			return "Autor Borrado";
-		}else {
+		} else {
 			return "Error al borrar autor";
-		
-	
 
-
+		}
 	}
-	}
-	
-	
-	
-	
 
 }
